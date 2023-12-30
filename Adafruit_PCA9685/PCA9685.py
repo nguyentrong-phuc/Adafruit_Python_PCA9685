@@ -106,22 +106,25 @@ class PCA9685(object):
         self._device.write8(LED0_OFF_L+4*channel, off & 0xFF)
         self._device.write8(LED0_OFF_H+4*channel, off >> 8)
 
-    def set_pwm_servo(self, channel, on, off1,off2, off3):
+    def setLegAngles(self, channel, on, off1,off2, off3):
+        set_pwm(channel, on, off1)
+        set_pwm(channel+1, on, off2)
+        set_pwm(channel+2, on, off3)
         """Sets a single PWM channel."""
-        self._device.write8(LED0_ON_L+4*channel, on & 0xFF)
-        self._device.write8(LED0_ON_H+4*channel, on >> 8)
-        self._device.write8(LED0_OFF_L+4*channel, off1 & 0xFF)
-        self._device.write8(LED0_OFF_H+4*channel, off1 >> 8)
-        #
-        self._device.write8(LED0_ON_L+4*(channel+1), on & 0xFF)
-        self._device.write8(LED0_ON_H+4*(channel+1), on >> 8)
-        self._device.write8(LED0_OFF_L+4*(channel+1), off2 & 0xFF)
-        self._device.write8(LED0_OFF_H+4*(channel+1), off2 >> 8)
-        #
-        self._device.write8(LED0_ON_L+4*(channel+2), on & 0xFF)
-        self._device.write8(LED0_ON_H+4*(channel+2), on >> 8)
-        self._device.write8(LED0_OFF_L+4*(channel+2), off3 & 0xFF)
-        self._device.write8(LED0_OFF_H+4*(channel+2), off3 >> 8)
+        # self._device.write8(LED0_ON_L+4*channel, on & 0xFF)
+        # self._device.write8(LED0_ON_H+4*channel, on >> 8)
+        # self._device.write8(LED0_OFF_L+4*channel, off1 & 0xFF)
+        # self._device.write8(LED0_OFF_H+4*channel, off1 >> 8)
+        # #
+        # self._device.write8(LED0_ON_L+4*(channel+1), on & 0xFF)
+        # self._device.write8(LED0_ON_H+4*(channel+1), on >> 8)
+        # self._device.write8(LED0_OFF_L+4*(channel+1), off2 & 0xFF)
+        # self._device.write8(LED0_OFF_H+4*(channel+1), off2 >> 8)
+        # #
+        # self._device.write8(LED0_ON_L+4*(channel+2), on & 0xFF)
+        # self._device.write8(LED0_ON_H+4*(channel+2), on >> 8)
+        # self._device.write8(LED0_OFF_L+4*(channel+2), off3 & 0xFF)
+        # self._device.write8(LED0_OFF_H+4*(channel+2), off3 >> 8)
         
     def set_all_pwm(self, on, off):
         """Sets all PWM channels."""
